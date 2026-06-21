@@ -40,6 +40,27 @@ public abstract class Produto {
         }
     }
 
+    public void aumentarEstoque(int quantidade) {
+        if (quantidade < 0) {
+            throw new ValorInvalidoException("A quantidade a ser aumentada não pode ser negativa.");
+        }
+        else{
+            this.quantidadeEstoque += quantidade;
+        }
+    }
+
+    public void diminuirEstoque(int quantidade) throws EstoqueInsuficienteException {
+        if (quantidade > this.quantidadeEstoque) {
+            throw new EstoqueInsuficienteException("A quantidade a ser diminuída é maior do que o estoque disponível.");
+        }
+        else if (quantidade < 0) {
+            throw new ValorInvalidoException("A quantidade a ser diminuída não pode ser negativa.");
+        }
+        else {
+            this.quantidadeEstoque -= quantidade;
+        }
+    }
+
     public double getPreco() {
         return precoBase;
     }
