@@ -18,7 +18,7 @@ public abstract class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    // Getters e Setters
+    // Metodos
     public String getNome() {
         return nome;
     }
@@ -27,7 +27,6 @@ public abstract class Produto {
         this.nome = nome;
     }
 
-    // Getters e Setters
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
