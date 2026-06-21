@@ -47,4 +47,12 @@ public abstract class Cliente {
     }
 
     abstract public int calcularPontos(double valorCompra);
+
+    @Override
+    public String toString() {
+        String message =    "Nome: " + this.nome + "\n" +
+                            "CPF: " + this.cpf + "\n" +
+                            "Saldo de XP: " + this.saldoXP;
+        return message;
+    }
 }

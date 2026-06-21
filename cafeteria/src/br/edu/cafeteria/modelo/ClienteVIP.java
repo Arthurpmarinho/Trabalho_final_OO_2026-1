@@ -32,4 +32,11 @@ public class ClienteVIP extends Cliente  {
         }
     }
 
+    @Override
+    public String toString() {
+        String message =    "Tipo de Cliente: VIP\n" +
+                            super.toString();
+        return message;
+    }
+
 }

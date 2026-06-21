@@ -16,4 +16,11 @@ public class ClienteStandard extends Cliente {
     public int calcularPontos(double valorCompra) {
         return (int) (valorCompra * MULTIPLICADOR_COMPRA);
     }
+
+    @Override
+    public String toString() {
+        String message =    "Tipo de Cliente: Standard\n" +
+                            super.toString();
+        return message;
+    }
 }
