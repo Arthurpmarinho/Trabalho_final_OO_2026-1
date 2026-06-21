@@ -1,6 +1,7 @@
 package br.edu.cafeteria.modelo;
 
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
+import br.edu.cafeteria.servico.Promocional;
 
 public class Pedido {
     private int id;
@@ -66,6 +67,24 @@ public class Pedido {
         for (ItemPedido objeto : itens){
             if (objeto != null){
                 valorTotal += objeto.getProduto().getPreco() * objeto.getQuantidade();
+            }
+            
+        }
+        return valorTotal;
+    }
+
+    public double calcularValorTotal(int desconto){
+        double valorTotal = 0;
+        for (ItemPedido objeto : itens){
+            if (objeto != null){
+                if (objeto.getProduto() instanceof Promocional) {
+                    Promocional itemComPromocao = (Promocional) objeto.getProduto();
+    
+                    double valorComDesconto = itemComPromocao.aplicarDesconto(desconto);
+                    valorTotal += valorComDesconto * objeto.getQuantidade();
+                } else {
+                    valorTotal += objeto.getProduto().getPreco() * objeto.getQuantidade();
+                }
             }
         }
         return valorTotal;

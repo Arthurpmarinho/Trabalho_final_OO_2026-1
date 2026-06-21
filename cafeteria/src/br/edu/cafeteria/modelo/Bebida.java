@@ -1,6 +1,8 @@
 package br.edu.cafeteria.modelo;
 
-public class Bebida extends Produto {
+import br.edu.cafeteria.servico.Promocional;
+
+public class Bebida extends Produto implements Promocional {
     // Atributos da classe Bebida
     private enum Temperatura {
         Quente,
@@ -55,6 +57,12 @@ public class Bebida extends Produto {
 
     public void setIntensidade(Intensidade intensidade) {
         this.intensidade = intensidade;
+    }
+
+    @Override
+    public double aplicarDesconto(int deconto) {
+        double valorComDesconto = getPreco() * (1 - deconto / 100.0);
+        return valorComDesconto;
     }
 
     @Override
