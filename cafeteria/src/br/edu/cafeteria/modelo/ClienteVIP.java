@@ -22,13 +22,14 @@ public class ClienteVIP extends Cliente  {
     }
 
 
-    public void pagarComPontos (double valorCompra) throws PontosInsuficientesException {
+    public boolean pagarComPontos (double valorCompra) throws PontosInsuficientesException {
         int pontosNecessarios = calcularPontos(valorCompra*MULTIPLICADOR_RESGATE);
         if (getSaldoXP() < pontosNecessarios) {
             throw new PontosInsuficientesException("Saldo de XP insuficiente para pagar com pontos.");
         }
         else {
             debitarXP(pontosNecessarios);
+            return true;
         }
     }
 

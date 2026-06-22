@@ -1,6 +1,7 @@
 package br.edu.cafeteria.modelo;
 
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
+import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.servico.Promocional;
 
 public class Pedido {
@@ -90,9 +91,18 @@ public class Pedido {
         return valorTotal;
     }
 
-    public void finalizarPedido() throws EstoqueInsuficienteException {
+    public boolean finalizarPedido() throws EstoqueInsuficienteException, PontosInsuficientesException {
         
-        if (cliente != null) {
+        boolean pagouComPontos = false;
+
+        if (cliente instanceof ClienteVIP) {
+            ClienteVIP clienteVIP = (ClienteVIP) cliente;
+            
+            pagouComPontos = clienteVIP.pagarComPontos(calcularValorTotal());
+        }
+
+
+        if (cliente != null && !pagouComPontos) {
             int pontosGanhos = cliente.calcularPontos(calcularValorTotal());
             cliente.adicionarXP(pontosGanhos);
         }
@@ -102,13 +112,15 @@ public class Pedido {
                 objeto.getProduto().diminuirEstoque(objeto.getQuantidade());
             }
         }
+        
+        return true;
     }
 
     @Override
     public String toString() {
         String message =    "ID do Pedido: " + this.id + "\n" +
                             "Atendente: " + this.atendente + "\n" +
-                            "Cliente: " + (this.cliente != null ? this.cliente.getNome() : "Nenhum") + "\n" +
+                            (this.cliente != null ? this.cliente.toString() : "Cliente: Nenhum\n") +
                             "Itens do Pedido:\n";
         for (ItemPedido item : itens) {
             if (item != null) {
