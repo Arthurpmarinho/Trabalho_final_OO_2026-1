@@ -18,19 +18,24 @@ public class ClienteVIP extends Cliente  {
     
     @Override
     public int calcularPontos(double valorCompra) {
-        return (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        int pontosganhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        return pontosganhos;
     }
 
+   
 
     public boolean pagarComPontos (double valorCompra) throws PontosInsuficientesException {
-        int pontosNecessarios = calcularPontos(valorCompra*MULTIPLICADOR_RESGATE);
-        if (getSaldoXP() < pontosNecessarios) {
-            throw new PontosInsuficientesException("Saldo de XP insuficiente para pagar com pontos.");
-        }
-        else {
-            debitarXP(pontosNecessarios);
+        int pontosNecessarios = (int) (valorCompra * MULTIPLICADOR_RESGATE);
+        if (getSaldoXP() >= pontosNecessarios) {
             return true;
+        } else {
+            throw new PontosInsuficientesException("Saldo de XP insuficiente para realizar a compra.");
         }
+    }
+
+    public int pontosgastos(double valorCompra) {
+        int pontosNecessarios = (int) (valorCompra * MULTIPLICADOR_RESGATE);
+        return pontosNecessarios;
     }
 
     @Override

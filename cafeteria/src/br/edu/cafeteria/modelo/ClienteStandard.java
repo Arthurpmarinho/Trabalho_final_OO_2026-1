@@ -14,7 +14,8 @@ public class ClienteStandard extends Cliente {
 
     @Override
     public int calcularPontos(double valorCompra) {
-        return (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        int pontosganhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        return pontosganhos;
     }
 
     @Override

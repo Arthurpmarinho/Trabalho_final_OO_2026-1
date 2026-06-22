@@ -46,6 +46,7 @@ public abstract class Cliente {
         this.saldoXP -= pontos;
     }
 
+    
     abstract public int calcularPontos(double valorCompra);
 
     @Override

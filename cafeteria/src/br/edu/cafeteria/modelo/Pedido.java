@@ -91,29 +91,39 @@ public class Pedido {
         return valorTotal;
     }
 
-    public boolean finalizarPedido() throws EstoqueInsuficienteException, PontosInsuficientesException {
+    public boolean finalizarPedido(boolean querpagarComPontos) throws PontosInsuficientesException, EstoqueInsuficienteException {
         
-        boolean pagouComPontos = false;
+        double valorTotal = calcularValorTotal();
+        boolean pagamentoRealizado = false;
+        if (querpagarComPontos) {
+            if (cliente instanceof ClienteVIP){
+                ClienteVIP clienteVIP = (ClienteVIP) cliente;
+                if (clienteVIP.pagarComPontos(valorTotal)) {
+                    System.out.println("Compra realizada com pontos! Valor total: R$ 0,00");
+                    clienteVIP.debitarXP(clienteVIP.pontosgastos(valorTotal));
+                    pagamentoRealizado = true;
+                }
+            }
+        }
+        else {
+            if (cliente != null) {
+                cliente.adicionarXP(cliente.calcularPontos(valorTotal));
+            }
 
-        if (cliente instanceof ClienteVIP) {
-            ClienteVIP clienteVIP = (ClienteVIP) cliente;
-            
-            pagouComPontos = clienteVIP.pagarComPontos(calcularValorTotal());
+            pagamentoRealizado = true;
+            System.out.println("Compra realizada! Valor total: R$ " + String.format("%.2f", valorTotal));
         }
 
-
-        if (cliente != null && !pagouComPontos) {
-            int pontosGanhos = cliente.calcularPontos(calcularValorTotal());
-            cliente.adicionarXP(pontosGanhos);
-        }
-
-        for (ItemPedido objeto : itens){
-            if (objeto != null) {
-                objeto.getProduto().diminuirEstoque(objeto.getQuantidade());
+        if (pagamentoRealizado) {
+            for (ItemPedido item : itens){
+                if (item != null){
+                    item.getProduto().removerEstoque(item.getQuantidade());
+                }
             }
         }
         
-        return true;
+
+        return pagamentoRealizado;
     }
 
     @Override
