@@ -20,7 +20,7 @@ public class Bebida extends Produto implements Promocional {
     private Tamanho tamanho;
 
     private enum Intensidade{
-        Fraca,
+        Fraco,
         Media,
         Forte
     }
@@ -28,11 +28,11 @@ public class Bebida extends Produto implements Promocional {
     private Intensidade intensidade;
 
 
-    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, Temperatura temperatura, Tamanho tamanho, Intensidade intensidade) {
+    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, String intensidade) {
         super(nome, preco, codigo, quantidadeEstoque);
-        this.temperatura = temperatura;
-        this.tamanho = tamanho;
-        this.intensidade = intensidade;
+        this.temperatura = Temperatura.valueOf(temperatura);
+        this.tamanho = Tamanho.valueOf(tamanho);
+        this.intensidade = Intensidade.valueOf(intensidade);
     }
 
     public Temperatura getTemperatura() {
