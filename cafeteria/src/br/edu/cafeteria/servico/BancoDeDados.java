@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class BancoDeDados {
 
-    private static ArrayList<Produto> cardapio;
-    private static ArrayList<Cliente> clientesCadastrados;
+    private ArrayList<Produto> cardapio;
+    private ArrayList<Cliente> clientesCadastrados;
 
     public BancoDeDados(){
         cardapio = new ArrayList<>();
@@ -102,8 +102,8 @@ public class BancoDeDados {
         adicionarProduto(new Comida("Lembas Bread", 12.00, "C002", 5, 20, "Vegano"));
         adicionarProduto(new Comida("Hambúrguer", 18.00, "C003", 8, 25, "Nenhuma"));
         adicionarProduto(new Bebida("Poção de Mana", 15.15, "B001", 38, "Fria", "Pequeno", "Media"));
-        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Médio", "Forte"));
-        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", "Pequeno"));
+        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Media", "Forte"));
+        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", "Fraco"));
 
 
         // Criando clientes iniciais
