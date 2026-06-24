@@ -33,15 +33,16 @@ public class BancoDeDados {
         System.out.println("Produto não encontrado.");
     }
 
-    public void acharProduto(String codigo){
+    public Produto acharProduto(String codigo){
         
         for (Produto produto : cardapio){
             if (produto.getCodigo().equals(codigo)){
                 System.out.println(produto.toString());
-                return;
+                return produto;
             }
         }
         System.out.println("Produto não encontrado.");
+        return null;
     }
 
     public void listarProdutos(){
@@ -84,14 +85,15 @@ public class BancoDeDados {
         System.out.println(message);
     }
 
-    public void acharCliente(String cpf){
+    public Cliente acharCliente(String cpf){
         for (Cliente cliente : clientesCadastrados){
             if (cliente.getCpf().equals(cpf)){
                 System.out.println(cliente.toString());
-                return;
+                return cliente;
             }
         }
         System.out.println("Cliente não encontrado.");
+        return null;
     }
 
 
