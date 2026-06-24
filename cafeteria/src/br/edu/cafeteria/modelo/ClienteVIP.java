@@ -13,7 +13,7 @@ public class ClienteVIP extends Cliente  {
     }
     
     public ClienteVIP(String nome, String cpf) {
-        super(nome, cpf);
+        super(nome, cpf, 0);
     }
     
     @Override
