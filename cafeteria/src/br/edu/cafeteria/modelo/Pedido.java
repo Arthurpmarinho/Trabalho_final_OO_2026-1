@@ -142,7 +142,7 @@ public class Pedido {
     public String toString() {
         String message =    "ID do Pedido: " + this.id + "\n" +
                             "Atendente: " + this.atendente + "\n" +
-                            (this.cliente != null ? this.cliente.toString() : "Cliente: Nenhum\n") +
+                            (this.cliente != null ? this.cliente.toString() + "\n" : "Cliente: Nenhum\n") +
                             "Itens do Pedido:\n";
         for (ItemPedido item : itens) {
             if (item != null) {
