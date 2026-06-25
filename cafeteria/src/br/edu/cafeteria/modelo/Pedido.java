@@ -10,6 +10,7 @@ public class Pedido {
     private String atendente;
     private Cliente cliente = null;
     private ItemPedido[] itens;
+    private int desconto = 0;
 
     public Pedido(String atendente, Cliente cliente) {
         this.id = contador++;
@@ -18,6 +19,8 @@ public class Pedido {
 
         this.itens = new ItemPedido[1];
     }
+
+
 
     public Pedido(String atendente) {
         this.id = contador++;
@@ -78,6 +81,8 @@ public class Pedido {
         double valorTotal = 0;
         for (ItemPedido objeto : itens){
             if (objeto != null){
+
+                // POLIMORFISMO POR COERÇÃO (Downcast):
                 if (objeto.getProduto() instanceof Promocional) {
                     Promocional itemComPromocao = (Promocional) objeto.getProduto();
     
@@ -91,40 +96,47 @@ public class Pedido {
         return valorTotal;
     }
 
-    public boolean finalizarPedido(boolean querpagarComPontos) throws PontosInsuficientesException, EstoqueInsuficienteException {
-        
-        double valorTotal = calcularValorTotal();
+    public boolean finalizarPedido(boolean querPagarComPontos, int desconto) throws PontosInsuficientesException, EstoqueInsuficienteException {
+        this.desconto = desconto;
+        double valorTotal = calcularValorTotal(desconto);
         boolean pagamentoRealizado = false;
-        if (querpagarComPontos) {
-            if (cliente instanceof ClienteVIP){
+
+        if (querPagarComPontos) {
+            if (cliente == null) {
+                System.out.println("Cliente casual não possui pontos. Realize o pagamento normalmente.");
+                return false;
+            }
+            if (cliente instanceof ClienteVIP) {
                 ClienteVIP clienteVIP = (ClienteVIP) cliente;
                 if (clienteVIP.pagarComPontos(valorTotal)) {
-                    System.out.println("Compra realizada com pontos! Valor total: R$ 0,00");
                     clienteVIP.debitarXP(clienteVIP.pontosgastos(valorTotal));
                     pagamentoRealizado = true;
                 }
+            } else {
+                System.out.println("Apenas clientes VIP podem pagar com pontos.");
             }
-        }
-        else {
+        } else {
             if (cliente != null) {
                 cliente.adicionarXP(cliente.calcularPontos(valorTotal));
+                System.out.println("XP acumulado! Novo saldo: " + cliente.getSaldoXP() + " XP");
             }
-
             pagamentoRealizado = true;
             System.out.println("Compra realizada! Valor total: R$ " + String.format("%.2f", valorTotal));
         }
 
         if (pagamentoRealizado) {
-            for (ItemPedido item : itens){
-                if (item != null){
+            for (ItemPedido item : itens) {
+                if (item != null) {
                     item.getProduto().removerEstoque(item.getQuantidade());
                 }
             }
         }
-        
 
         return pagamentoRealizado;
     }
+        
+
+        
 
     @Override
     public String toString() {
@@ -137,8 +149,8 @@ public class Pedido {
                 message += " - " + item.getQuantidade() + "x " + item.getProduto().getNome() + "\n";
             }
         }
-
-        message += "Valor Total: R$ " + String.format("%.2f", calcularValorTotal());
+        message += "Desconto: " + this.desconto + "%\n";
+        message += "Valor Total: R$ " + String.format("%.2f", calcularValorTotal(desconto)) + "\n";
         return message;
     }
 
