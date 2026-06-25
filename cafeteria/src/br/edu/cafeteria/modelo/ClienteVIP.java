@@ -5,7 +5,7 @@ import br.edu.cafeteria.excecao.PontosInsuficientesException;
 public class ClienteVIP extends Cliente  {
 
     private static final int MULTIPLICADOR_COMPRA = 2;
-    private static final int MULTIPLICADOR_RESGATE = 10;
+    
 
 
     public ClienteVIP(String nome, String cpf, int saldoXP) {

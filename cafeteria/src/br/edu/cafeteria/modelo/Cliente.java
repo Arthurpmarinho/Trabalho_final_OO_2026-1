@@ -7,6 +7,8 @@ public abstract class Cliente {
     private String cpf;
     private int saldoXP;
 
+    protected static final int MULTIPLICADOR_RESGATE = 10;
+
     protected Cliente(String nome, String cpf, int saldoXP) {
         this.nome = nome;
         this.cpf = cpf;
