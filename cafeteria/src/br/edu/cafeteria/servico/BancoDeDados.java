@@ -37,11 +37,9 @@ public class BancoDeDados {
         
         for (Produto produto : cardapio){
             if (produto.getCodigo().equals(codigo)){
-                System.out.println(produto.toString());
                 return produto;
             }
         }
-        System.out.println("Produto não encontrado.");
         return null;
     }
 
@@ -88,12 +86,34 @@ public class BancoDeDados {
     public Cliente acharCliente(String cpf){
         for (Cliente cliente : clientesCadastrados){
             if (cliente.getCpf().equals(cpf)){
-                System.out.println(cliente.toString());
                 return cliente;
             }
         }
-        System.out.println("Cliente não encontrado.");
         return null;
+    }
+
+    public void atualizarProduto(String codigo, String nome, double preco, int quantidadeEstoque) {
+        for (Produto produto : cardapio) {
+            if (produto.getCodigo().equals(codigo)) {
+                produto.setNome(nome);
+                produto.setPreco(preco);
+                produto.setQuantidadeEstoque(quantidadeEstoque);
+                System.out.println("Produto atualizado");
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado");
+    }
+
+    public void atualizarCliente(String cpf, String nome) {
+        for (Cliente cliente : clientesCadastrados) {
+            if (cliente.getCpf().equals(cpf)) {
+                cliente.setNome(nome);
+                System.out.println("Cliente atualizado");
+                return;
+            }
+        }
+        System.out.println("Cliente não encontrado");
     }
 
 
