@@ -1,4 +1,3 @@
-
 package br.edu.cafeteria.app;
 
 import br.edu.cafeteria.servico.BancoDeDados;
@@ -207,44 +206,40 @@ public class App {
 
                     try {
                         pedido.adicionarItem(produto, quantidadeProduto);
+                        System.out.println("Item adicionado com sucesso!");
                     } catch (EstoqueInsuficienteException e) {
                         System.out.println("Erro: " + e.getMessage());
-                        continue;
                     }
 
                     System.out.println("Deseja adicionar mais produtos ao pedido? (S/N)");
                     pedirMaisProdutos = System.console().readLine().equalsIgnoreCase("S");
+                }
 
-                    if (!pedirMaisProdutos) {
-                        System.out.println("Deseja pagar com pontos? (S/N)");
-                        boolean querPagarComPontos = System.console().readLine().equalsIgnoreCase("S");
+                System.out.println("Deseja pagar com pontos? (S/N)");
+                boolean querPagarComPontos = System.console().readLine().equalsIgnoreCase("S");
 
+                try {
+                    boolean finalizado = pedido.finalizarPedido(querPagarComPontos, desconto);
+                    if (finalizado) {
+                        System.out.println(pedido.toString());
+                    } else {
+                        System.out.println("Pedido não foi finalizado.");
+                    }
+                } catch (PontosInsuficientesException e) {
+                    System.out.println("Erro: " + e.getMessage());
+                    System.out.println("Realizando pagamento normal...");
                     try {
-                        boolean finalizado = pedido.finalizarPedido(querPagarComPontos, desconto);
+                        boolean finalizado = pedido.finalizarPedido(false, desconto);
                         if (finalizado) {
                             System.out.println(pedido.toString());
                         } else {
-                            System.out.println("Pedido não foi finalizado");
+                            System.out.println("Pedido não foi finalizado.");
                         }
-                    } catch (PontosInsuficientesException e) {
-                        System.out.println("Erro: " + e.getMessage());
-                        System.out.println("Realizando pagamento normal");
-                        try {
-                            boolean finalizado = pedido.finalizarPedido(false, desconto);
-                            if (finalizado) {
-                                System.out.println(pedido.toString());
-                            } else {
-                                System.out.println("Pedido não foi finalizado");
-                            }
-                        } catch (EstoqueInsuficienteException ex) {
-                            System.out.println("Erro inesperado: " + ex.getMessage());
-                        }
-                    } catch (EstoqueInsuficienteException e) {
-                        System.out.println("Erro de estoque ao finalizar pedido: " + e.getMessage());
+                    } catch (EstoqueInsuficienteException ex) {
+                        System.out.println("Erro inesperado ao finalizar: " + ex.getMessage());
                     }
-
-                        break;
-                    }
+                } catch (EstoqueInsuficienteException e) {
+                    System.out.println("Erro de estoque ao finalizar pedido: " + e.getMessage());
                 }
                 break;
 
