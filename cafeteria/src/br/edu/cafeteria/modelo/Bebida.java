@@ -6,13 +6,13 @@ public class Bebida extends Produto implements Promocional {
     
     private String temperatura;
     private String tamanho;
-    private String intensidade;
+    private int quantidadeEmMg;
 
-    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, String intensidade) {
+    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, int quantidadeEmMg) {
         super(nome, preco, codigo, quantidadeEstoque);
         this.temperatura = temperatura;
         this.tamanho = tamanho;
-        this.intensidade = intensidade;
+        this.quantidadeEmMg = quantidadeEmMg;
     }
 
     public String getTemperatura() {
@@ -31,27 +31,26 @@ public class Bebida extends Produto implements Promocional {
         this.tamanho = tamanho;
     }
 
-    public String getIntensidade() {
-        return intensidade;
+    public int getQuantidadeEmMg() {
+        return quantidadeEmMg;
     }
 
-    public void setIntensidade(String intensidade) {
-        this.intensidade = intensidade;
+    public void setQuantidadeEmMg(int quantidadeEmMg) {
+        this.quantidadeEmMg = quantidadeEmMg;
     }
 
     @Override
-    public double aplicarDesconto(int deconto) {
-        double valorComDesconto = getPreco() * (1 - deconto / 100.0);
+    public double aplicarDesconto(int desconto) {
+        double valorComDesconto = getPreco() * (1 - desconto / 100.0);
         return valorComDesconto;
     }
 
     @Override
     public String toString() {
         String message = super.toString();
-
         message += "Temperatura: " + temperatura + "\n";
         message += "Tamanho: " + tamanho + "\n";
-        message += "Intensidade: " + intensidade + "\n";
+        message += "Cafeína: " + quantidadeEmMg + " mg\n";
         return message;
     }
 

@@ -61,9 +61,9 @@ public class App {
                     String temperatura = scanner.nextLine();
                     System.out.println("Digite o tamanho da bebida (Pequeno/Medio/Grande):");
                     String tamanho = scanner.nextLine();
-                    System.out.println("Digite a intensidade da bebida (Fraco/Media/Forte):");
-                    String intensidade = scanner.nextLine();
-                    Bebida bebida = new Bebida(nome, preco, codigo, quantidadeEstoque, temperatura, tamanho, intensidade);
+                    System.out.println("Digite a quantidade de cafeína da bebida (em mg):");
+                    int quantidadeEmMg = Integer.parseInt(scanner.nextLine());
+                    Bebida bebida = new Bebida(nome, preco, codigo, quantidadeEstoque, temperatura, tamanho, quantidadeEmMg);
                     banco.adicionarProduto(bebida);
                 } else if (categoria.equalsIgnoreCase("Comida")) {
                     System.out.println("Digite o tempo de preparo (em minutos):");

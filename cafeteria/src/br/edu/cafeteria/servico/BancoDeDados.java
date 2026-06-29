@@ -121,9 +121,9 @@ public class BancoDeDados {
         adicionarProduto(new Comida("Pizza", 25.25, "C001", 10, 24, "Nenhuma"));
         adicionarProduto(new Comida("Lembas Bread", 12.00, "C002", 5, 20, "Vegano"));
         adicionarProduto(new Comida("Hambúrguer", 18.00, "C003", 8, 25, "Nenhuma"));
-        adicionarProduto(new Bebida("Poção de Mana", 15.15, "B001", 38, "Fria", "Pequeno", "Media"));
-        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Medio", "Forte"));
-        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", "Fraco"));
+        adicionarProduto(new Bebida("Poção de Mana", 15.15, "B001", 38, "Fria", "Pequeno", 0));
+        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Medio", 200));
+        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", 50));
 
 
         // Criando clientes iniciais
