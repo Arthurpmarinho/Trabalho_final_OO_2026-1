@@ -26,11 +26,9 @@ public class BancoDeDados {
         for (Produto produto : cardapio){
             if (produto.getCodigo().equals(codigo)){
                 cardapio.remove(produto);
-                System.out.println("Produto removido com sucesso.");
                 return;
             }
         }
-        System.out.println("Produto não encontrado.");
     }
 
     public Produto acharProduto(String codigo){
