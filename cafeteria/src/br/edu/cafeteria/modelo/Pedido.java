@@ -3,13 +3,14 @@ package br.edu.cafeteria.modelo;
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.servico.Promocional;
+import java.util.ArrayList;
 
 public class Pedido {
     private int id;
     private static int contador = 1;
     private String atendente;
     private Cliente cliente = null;
-    private ItemPedido[] itens;
+    private ArrayList<ItemPedido> itens;
     private int desconto = 0;
 
     public Pedido(String atendente, Cliente cliente) {
@@ -17,7 +18,7 @@ public class Pedido {
         this.atendente = atendente;
         this.cliente = cliente;
 
-        this.itens = new ItemPedido[1];
+        this.itens = new ArrayList<>();
     }
 
 
@@ -26,7 +27,7 @@ public class Pedido {
         this.id = contador++;
         this.atendente = atendente;
 
-        this.itens = new ItemPedido[1];
+        this.itens = new ArrayList<>();
     }
 
     public int getId() {
@@ -47,19 +48,7 @@ public class Pedido {
             throw new EstoqueInsuficienteException("Estoque insuficiente para o produto: " + produto.getNome());
         }
 
-        ItemPedido pedido = new ItemPedido(produto,quantidade);
-        for (int i = 0; i < itens.length; i++) {
-            if (itens[i] == null) {
-                itens[i] = pedido;
-                return;
-            }
-        }
-        ItemPedido[] novoArray = new ItemPedido[itens.length + 1];
-        for (int i = 0; i < itens.length; i++){
-            novoArray[i] = itens[i];
-        }
-        novoArray[itens.length] = pedido;
-        this.itens = novoArray;
+        itens.add(new ItemPedido(produto, quantidade));
     }
 
     public void adicionarItem(Produto produto) throws EstoqueInsuficienteException {
