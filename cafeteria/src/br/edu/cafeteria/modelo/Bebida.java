@@ -3,59 +3,39 @@ package br.edu.cafeteria.modelo;
 import br.edu.cafeteria.servico.Promocional;
 
 public class Bebida extends Produto implements Promocional {
-    // Atributos da classe Bebida
-    private enum Temperatura {
-        Quente,
-        Fria
-    }
-
-    private Temperatura temperatura;
-
-    private enum Tamanho {
-        Pequeno,
-        Medio,
-        Grande
-    }
-
-    private Tamanho tamanho;
-
-    private enum Intensidade{
-        Fraco,
-        Media,
-        Forte
-    }
-
-    private Intensidade intensidade;
-
+    
+    private String temperatura;
+    private String tamanho;
+    private String intensidade;
 
     public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, String intensidade) {
         super(nome, preco, codigo, quantidadeEstoque);
-        this.temperatura = Temperatura.valueOf(temperatura);
-        this.tamanho = Tamanho.valueOf(tamanho);
-        this.intensidade = Intensidade.valueOf(intensidade);
+        this.temperatura = temperatura;
+        this.tamanho = tamanho;
+        this.intensidade = intensidade;
     }
 
-    public Temperatura getTemperatura() {
+    public String getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(Temperatura temperatura) {
+    public void setTemperatura(String temperatura) {
         this.temperatura = temperatura;
     }
 
-    public Tamanho getTamanho() {
+    public String getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(Tamanho tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
-    public Intensidade getIntensidade() {
+    public String getIntensidade() {
         return intensidade;
     }
 
-    public void setIntensidade(Intensidade intensidade) {
+    public void setIntensidade(String intensidade) {
         this.intensidade = intensidade;
     }
 

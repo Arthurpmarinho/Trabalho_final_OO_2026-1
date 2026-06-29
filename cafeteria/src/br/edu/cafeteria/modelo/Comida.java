@@ -5,18 +5,13 @@ import br.edu.cafeteria.excecao.ValorInvalidoException;
 public class Comida extends Produto {
     // Atributos da classe Comida
     private int tempoPreparoMin;
-    private enum RestricaoAlimentar {
-        SemGlutem,
-        Vegano,
-        Nenhuma
-    };
+    private String restricaoAlimentar;
 
-    private RestricaoAlimentar restricaoAlimentar;
 
     public Comida(String nome, double preco, String codigo, int quantidadeEstoque, int tempoPreparoMin, String restricao) {
         super(nome, preco, codigo, quantidadeEstoque);
         this.tempoPreparoMin = tempoPreparoMin;
-        this.restricaoAlimentar = RestricaoAlimentar.valueOf(restricao);
+        this.restricaoAlimentar = restricaoAlimentar;
     }
 
     public int getTempoPreparoMin() {
@@ -32,11 +27,11 @@ public class Comida extends Produto {
         }
     }
 
-    public RestricaoAlimentar getRestricaoAlimentar() {
+    public String getRestricaoAlimentar() {
         return restricaoAlimentar;
     }
 
-    public void setRestricaoAlimentar(RestricaoAlimentar restricaoAlimentar) {
+    public void setRestricaoAlimentar(String restricaoAlimentar) {
         this.restricaoAlimentar = restricaoAlimentar;
     }
 
