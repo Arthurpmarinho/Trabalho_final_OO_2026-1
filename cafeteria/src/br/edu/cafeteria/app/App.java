@@ -4,14 +4,14 @@ import br.edu.cafeteria.servico.BancoDeDados;
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.modelo.*;
+import java.util.Scanner;
 
 
 public class App {
 
     public static void main(String[] args) throws Exception {
         BancoDeDados banco = new BancoDeDados();
-
-        
+        Scanner scanner = new Scanner(System.in);
 
         String message =    "===================================\n" +
                             "Bem-vindo(a) à Cafeteria!\n" +
@@ -20,7 +20,7 @@ public class App {
         System.out.println(message);
 
         System.out.println("Digitar nome do atendente:");
-        String atendente = System.console().readLine();
+        String atendente = scanner.nextLine();
 
         int opcao = 1;
 
@@ -40,36 +40,36 @@ public class App {
 
             System.out.println(message);
 
-            opcao = Integer.parseInt(System.console().readLine());
+            opcao = Integer.parseInt(scanner.nextLine());
 
 
             switch (opcao) {
             case 1:
                 System.out.println("Digite o código do produto:");
-                String codigo = System.console().readLine();
+                String codigo = scanner.nextLine();
                 System.out.println("Digite o nome do produto:");
-                String nome = System.console().readLine();
+                String nome = scanner.nextLine();
                 System.out.println("Digite a categoria do produto (Bebida/Comida):");
-                String categoria = System.console().readLine();
+                String categoria = scanner.nextLine();
                 System.out.println("Digite o preço do produto:");
-                double preco = Double.parseDouble(System.console().readLine());
+                double preco = Double.parseDouble(scanner.nextLine());
                 System.out.println("Digite a quantidade em estoque do produto:");
-                int quantidadeEstoque = Integer.parseInt(System.console().readLine());
+                int quantidadeEstoque = Integer.parseInt(scanner.nextLine());
 
                 if (categoria.equalsIgnoreCase("Bebida")) {
                     System.out.println("Digite a temperatura da bebida (Quente/Fria):");
-                    String temperatura = System.console().readLine();
+                    String temperatura = scanner.nextLine();
                     System.out.println("Digite o tamanho da bebida (Pequeno/Medio/Grande):");
-                    String tamanho = System.console().readLine();
+                    String tamanho = scanner.nextLine();
                     System.out.println("Digite a intensidade da bebida (Fraco/Media/Forte):");
-                    String intensidade = System.console().readLine();
+                    String intensidade = scanner.nextLine();
                     Bebida bebida = new Bebida(nome, preco, codigo, quantidadeEstoque, temperatura, tamanho, intensidade);
                     banco.adicionarProduto(bebida);
                 } else if (categoria.equalsIgnoreCase("Comida")) {
                     System.out.println("Digite o tempo de preparo (em minutos):");
-                    int tempoPreparo = Integer.parseInt(System.console().readLine());
+                    int tempoPreparo = Integer.parseInt(scanner.nextLine());
                     System.out.println("Digite a restrição alimentar (SemGlutem/Vegano/Nenhuma):");
-                    String restricao = System.console().readLine();
+                    String restricao = scanner.nextLine();
                     Comida comida = new Comida(nome, preco, codigo, quantidadeEstoque, tempoPreparo, restricao);
                     banco.adicionarProduto(comida);
                 } else {
@@ -83,7 +83,7 @@ public class App {
 
             case 3:
                 System.out.println("Digite o código do produto a atualizar:");
-                String codAtualizar = System.console().readLine();
+                String codAtualizar = scanner.nextLine();
 
                 Produto produtoExistente = banco.acharProduto(codAtualizar);
                 if (produtoExistente == null) {
@@ -92,28 +92,28 @@ public class App {
                 }
 
                 System.out.println("Novo nome (atual: " + produtoExistente.getNome() + "):");
-                String novoNomeProduto = System.console().readLine();
+                String novoNomeProduto = scanner.nextLine();
                 System.out.println("Novo preço (atual: R$ " + produtoExistente.getPreco() + "):");
-                double novoPreco = Double.parseDouble(System.console().readLine());
+                double novoPreco = Double.parseDouble(scanner.nextLine());
                 System.out.println("Nova quantidade em estoque (atual: " + produtoExistente.getQuantidadeEstoque() + "):");
-                int novaQtd = Integer.parseInt(System.console().readLine());
+                int novaQtd = Integer.parseInt(scanner.nextLine());
 
                 banco.atualizarProduto(codAtualizar, novoNomeProduto, novoPreco, novaQtd);
                 break;
 
             case 4:
                 System.out.println("Digite o código do produto a remover:");
-                String codRemover = System.console().readLine();
+                String codRemover = scanner.nextLine();
                 banco.removerProduto(codRemover);
                 break;
 
             case 5:
                 System.out.println("Digite o nome do cliente:");
-                String nomeCliente = System.console().readLine();
+                String nomeCliente = scanner.nextLine();
                 System.out.println("Digite o CPF do cliente:");
-                String cpfCliente = System.console().readLine();
+                String cpfCliente = scanner.nextLine();
                 System.out.println("Digite o tipo de cliente Standard(S) ou VIP(V):");
-                String tipoCliente = System.console().readLine();
+                String tipoCliente = scanner.nextLine();
 
                 if (tipoCliente.equalsIgnoreCase("S")) {
                     ClienteStandard clienteStandard = new ClienteStandard(nomeCliente, cpfCliente);
@@ -132,7 +132,7 @@ public class App {
 
             case 7:
                 System.out.println("Digite o CPF do cliente a atualizar:");
-                String cpfAtualizar = System.console().readLine();
+                String cpfAtualizar = scanner.nextLine();
 
                 Cliente clienteExistente = banco.acharCliente(cpfAtualizar);
                 if (clienteExistente == null) {
@@ -141,14 +141,14 @@ public class App {
                 }
 
                 System.out.println("Novo nome (atual: " + clienteExistente.getNome() + "):");
-                String novoNomeCliente = System.console().readLine();
+                String novoNomeCliente = scanner.nextLine();
 
                 banco.atualizarCliente(cpfAtualizar, novoNomeCliente);
                 break;
 
             case 8:
                 System.out.println("Digite o CPF do cliente a remover:");
-                String cpfRemover = System.console().readLine();
+                String cpfRemover = scanner.nextLine();
                 banco.removerCliente(cpfRemover);
                 break;
 
@@ -160,7 +160,7 @@ public class App {
                 boolean pedirMaisProdutos = true;
 
                 System.out.println("Digite o CPF do cliente (ou ENTER para cliente casual):");
-                String cpfClienteVenda = System.console().readLine();
+                String cpfClienteVenda = scanner.nextLine();
 
                 Cliente cliente = null;
                 Pedido pedido;
@@ -180,23 +180,20 @@ public class App {
                 }
 
                 System.out.println("Possui alguma promoção (S/N)?");
-                boolean diaPromocao = System.console().readLine().equalsIgnoreCase("S");
+                boolean diaPromocao = scanner.nextLine().equalsIgnoreCase("S");
                 if (diaPromocao) {
                     System.out.println("Digite o desconto em %:");
-                    desconto = Integer.parseInt(System.console().readLine());
+                    desconto = Integer.parseInt(scanner.nextLine());
                     System.out.println("Desconto de " + desconto + "% aplicado!");
                 } else {
                     System.out.println("Sem desconto aplicado");
-                    
                 }
-
-
 
                 while (pedirMaisProdutos) {
                     System.out.println("Digite o código do produto que deseja comprar:");
-                    String codigoProduto = System.console().readLine();
+                    String codigoProduto = scanner.nextLine();
                     System.out.println("Digite a quantidade que deseja comprar:");
-                    int quantidadeProduto = Integer.parseInt(System.console().readLine());
+                    int quantidadeProduto = Integer.parseInt(scanner.nextLine());
 
                     Produto produto = banco.acharProduto(codigoProduto);
                     if (produto == null) {
@@ -212,11 +209,11 @@ public class App {
                     }
 
                     System.out.println("Deseja adicionar mais produtos ao pedido? (S/N)");
-                    pedirMaisProdutos = System.console().readLine().equalsIgnoreCase("S");
+                    pedirMaisProdutos = scanner.nextLine().equalsIgnoreCase("S");
                 }
 
                 System.out.println("Deseja pagar com pontos? (S/N)");
-                boolean querPagarComPontos = System.console().readLine().equalsIgnoreCase("S");
+                boolean querPagarComPontos = scanner.nextLine().equalsIgnoreCase("S");
 
                 try {
                     boolean finalizado = pedido.finalizarPedido(querPagarComPontos, desconto);
@@ -252,9 +249,8 @@ public class App {
                 break;
         }
 
-
-
         }
 
+        scanner.close();
     }
 }
