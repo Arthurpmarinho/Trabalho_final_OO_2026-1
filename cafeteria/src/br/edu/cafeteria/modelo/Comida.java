@@ -11,7 +11,7 @@ public class Comida extends Produto {
     public Comida(String nome, double preco, String codigo, int quantidadeEstoque, int tempoPreparoMin, String restricao) {
         super(nome, preco, codigo, quantidadeEstoque);
         this.tempoPreparoMin = tempoPreparoMin;
-        this.restricaoAlimentar = restricaoAlimentar;
+        this.restricaoAlimentar = restricao;
     }
 
     public int getTempoPreparoMin() {
