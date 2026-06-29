@@ -18,8 +18,8 @@ public class ClienteVIP extends Cliente  {
     
     @Override
     public int calcularPontos(double valorCompra) {
-        int pontosganhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
-        return pontosganhos;
+        int pontosGanhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        return pontosGanhos;
     }
 
    
