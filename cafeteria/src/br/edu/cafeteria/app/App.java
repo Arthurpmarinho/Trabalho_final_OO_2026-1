@@ -44,6 +44,7 @@ public class App {
 
 
             switch (opcao) {
+            //Cadastrar Produto
             case 1:
                 System.out.println("Digite o código do produto:");
                 String codigo = scanner.nextLine();
@@ -76,11 +77,13 @@ public class App {
                     System.out.println("Categoria inválida.");
                 }
                 break;
-
+            
+            //Listar Produtos
             case 2:
                 banco.listarProdutos();
                 break;
 
+            //Atualizar Produto
             case 3:
                 System.out.println("Digite o código do produto a atualizar:");
                 String codAtualizar = scanner.nextLine();
@@ -100,13 +103,15 @@ public class App {
 
                 banco.atualizarProduto(codAtualizar, novoNomeProduto, novoPreco, novaQtd);
                 break;
-
+            
+            //Remover Produto
             case 4:
                 System.out.println("Digite o código do produto a remover:");
                 String codRemover = scanner.nextLine();
                 banco.removerProduto(codRemover);
                 break;
-
+            
+            //Cadastrar Cliente
             case 5:
                 System.out.println("Digite o nome do cliente:");
                 String nomeCliente = scanner.nextLine();
@@ -125,11 +130,13 @@ public class App {
                     System.out.println("Tipo de cliente inválido.");
                 }
                 break;
-
+            
+            //Listar Clientes
             case 6:
                 banco.listarClientes();
                 break;
-
+            
+            //Atualizar Cliente
             case 7:
                 System.out.println("Digite o CPF do cliente a atualizar:");
                 String cpfAtualizar = scanner.nextLine();
@@ -145,13 +152,15 @@ public class App {
 
                 banco.atualizarCliente(cpfAtualizar, novoNomeCliente);
                 break;
-
+            
+            //Remover Cliente
             case 8:
                 System.out.println("Digite o CPF do cliente a remover:");
                 String cpfRemover = scanner.nextLine();
                 banco.removerCliente(cpfRemover);
                 break;
-
+            
+            //Realizar Venda
             case 9:
 
                 int desconto = 0;
@@ -239,7 +248,8 @@ public class App {
                     System.out.println("Erro de estoque ao finalizar pedido: " + e.getMessage());
                 }
                 break;
-
+            
+            //Sair
             case 0:
                 System.out.println("Saindo do sistema...");
                 break;

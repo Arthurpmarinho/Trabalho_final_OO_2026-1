@@ -6,6 +6,7 @@ import br.edu.cafeteria.servico.Promocional;
 import java.util.ArrayList;
 
 public class Pedido {
+    //Atributos da classe Pedido
     private int id;
     private static int contador = 1;
     private String atendente;
@@ -20,7 +21,6 @@ public class Pedido {
 
         this.itens = new ArrayList<>();
     }
-
 
 
     public Pedido(String atendente) {
@@ -98,7 +98,6 @@ public class Pedido {
             if (cliente instanceof ClienteVIP) {
                 ClienteVIP clienteVIP = (ClienteVIP) cliente;
                 if (clienteVIP.pagarComPontos(valorTotal)) {
-                    clienteVIP.debitarXP(clienteVIP.pontosgastos(valorTotal));
                     pagamentoRealizado = true;
                 }
             } else {

@@ -2,6 +2,7 @@ package br.edu.cafeteria.modelo;
 
 public class ClienteStandard extends Cliente {
     
+    // Atributos da classe ClienteStandard
     private static final int MULTIPLICADOR_COMPRA = 1;
 
     public ClienteStandard(String nome, String cpf, int saldoXP) {

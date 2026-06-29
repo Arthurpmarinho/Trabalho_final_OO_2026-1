@@ -3,7 +3,8 @@ package br.edu.cafeteria.modelo;
 import br.edu.cafeteria.servico.Promocional;
 
 public class Bebida extends Produto implements Promocional {
-    
+
+    //Atributos da classe Bebida
     private String temperatura;
     private String tamanho;
     private int quantidadeEmMg;
@@ -15,6 +16,7 @@ public class Bebida extends Produto implements Promocional {
         this.quantidadeEmMg = quantidadeEmMg;
     }
 
+    // Getters e Setters
     public String getTemperatura() {
         return temperatura;
     }
@@ -39,6 +41,7 @@ public class Bebida extends Produto implements Promocional {
         this.quantidadeEmMg = quantidadeEmMg;
     }
 
+    // Implementação da interface Promocional
     @Override
     public double aplicarDesconto(int desconto) {
         double valorComDesconto = getPreco() * (1 - desconto / 100.0);

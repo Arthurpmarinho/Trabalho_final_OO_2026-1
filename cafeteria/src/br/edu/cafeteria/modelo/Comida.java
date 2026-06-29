@@ -14,6 +14,7 @@ public class Comida extends Produto {
         this.restricaoAlimentar = restricao;
     }
 
+    // Getters e Setters
     public int getTempoPreparoMin() {
             return tempoPreparoMin;
     }

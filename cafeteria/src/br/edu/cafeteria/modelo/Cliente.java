@@ -2,7 +2,7 @@ package br.edu.cafeteria.modelo;
 
 
 public abstract class Cliente {
-
+    //Atributos da classe Cliente
     private String nome;
     private String cpf;
     private int saldoXP;
@@ -21,6 +21,7 @@ public abstract class Cliente {
         this.saldoXP = 0;
     }
 
+    //getters e setters
     public String getNome() {
         return nome;
     }
@@ -41,6 +42,7 @@ public abstract class Cliente {
         return saldoXP;
     }
 
+    //Adicionar e debitar XP
     public void adicionarXP(int pontos) {
         this.saldoXP += pontos;
     }
@@ -48,7 +50,7 @@ public abstract class Cliente {
         this.saldoXP -= pontos;
     }
 
-    
+    //Calcular pontos para cada cliente
     abstract public int calcularPontos(double valorCompra);
 
     @Override

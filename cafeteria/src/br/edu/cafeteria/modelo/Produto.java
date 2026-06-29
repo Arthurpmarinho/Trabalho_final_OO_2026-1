@@ -18,7 +18,7 @@ public abstract class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    // Metodos
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -62,6 +62,8 @@ public abstract class Produto {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    //Métodos da classe Produto
 
     public void adicionarEstoque(int quantidade) {
         if (quantidade < 0) {
