@@ -4,6 +4,7 @@ import br.edu.cafeteria.excecao.PontosInsuficientesException;
 
 public class ClienteVIP extends Cliente  {
 
+    // Atributos da classe ClienteVIP
     private static final int MULTIPLICADOR_COMPRA = 2;
     
 
@@ -18,12 +19,11 @@ public class ClienteVIP extends Cliente  {
     
     @Override
     public int calcularPontos(double valorCompra) {
-        int pontosganhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
-        return pontosganhos;
+        int pontosGanhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        return pontosGanhos;
     }
 
-   
-
+    // Métodos para verificar se o cliente VIP pode pagar com pontos e calcular os pontos gastos
     public boolean pagarComPontos (double valorCompra) throws PontosInsuficientesException {
         int pontosNecessarios = (int) (valorCompra * MULTIPLICADOR_RESGATE);
         if (getSaldoXP() >= pontosNecessarios) {
@@ -33,7 +33,7 @@ public class ClienteVIP extends Cliente  {
         }
     }
 
-    public int pontosgastos(double valorCompra) {
+    public int pontosGastos(double valorCompra) {
         int pontosNecessarios = (int) (valorCompra * MULTIPLICADOR_RESGATE);
         return pontosNecessarios;
     }

@@ -1,6 +1,7 @@
 package br.edu.cafeteria.modelo;
 
 public class ItemPedido {
+    //Atributos da classe ItemPedido
     private Produto produto;
     private int quantidade;
 
@@ -9,6 +10,7 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
+    //Getters e Setters
     public Produto getProduto() {
         return produto;
     }

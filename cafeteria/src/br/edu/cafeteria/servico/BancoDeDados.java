@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class BancoDeDados {
-
+    //Atributos da classe BancoDeDados
     private ArrayList<Produto> cardapio;
     private ArrayList<Cliente> clientesCadastrados;
 
@@ -16,21 +16,24 @@ public class BancoDeDados {
         carregarDadosIniciais();
     }
 
+    //Métodos da classe BancoDeDados
+
     //produtos
 
     public void adicionarProduto(Produto produto){
         cardapio.add(produto);
+        System.out.println("Produto adicionado com sucesso");
     }
 
     public void removerProduto(String codigo){
         for (Produto produto : cardapio){
             if (produto.getCodigo().equals(codigo)){
                 cardapio.remove(produto);
-                System.out.println("Produto removido com sucesso.");
+                System.out.println("Produto removido com sucesso");
                 return;
             }
         }
-        System.out.println("Produto não encontrado.");
+        System.out.println("Produto não encontrado");
     }
 
     public Produto acharProduto(String codigo){
@@ -54,17 +57,31 @@ public class BancoDeDados {
         System.out.println(message);
     }
 
+    public void atualizarProduto(String codigo, String nome, double preco, int quantidadeEstoque) {
+        for (Produto produto : cardapio) {
+            if (produto.getCodigo().equals(codigo)) {
+                produto.setNome(nome);
+                produto.setPreco(preco);
+                produto.setQuantidadeEstoque(quantidadeEstoque);
+                System.out.println("Produto atualizado");
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado");
+    }
+
     //clientes
 
     public void adicionarCliente(Cliente cliente){
         clientesCadastrados.add(cliente);
+        System.out.println("Cliente adicionado com sucesso");
     }
 
     public void removerCliente(String cpf){
         for (Cliente cliente : clientesCadastrados){
             if (cliente.getCpf().equals(cpf)){
                 clientesCadastrados.remove(cliente);
-                System.out.println("Cliente removido com sucesso.");
+                System.out.println("Cliente removido com sucesso");
                 return;
             }
         }
@@ -92,18 +109,6 @@ public class BancoDeDados {
         return null;
     }
 
-    public void atualizarProduto(String codigo, String nome, double preco, int quantidadeEstoque) {
-        for (Produto produto : cardapio) {
-            if (produto.getCodigo().equals(codigo)) {
-                produto.setNome(nome);
-                produto.setPreco(preco);
-                produto.setQuantidadeEstoque(quantidadeEstoque);
-                System.out.println("Produto atualizado");
-                return;
-            }
-        }
-        System.out.println("Produto não encontrado");
-    }
 
     public void atualizarCliente(String cpf, String nome) {
         for (Cliente cliente : clientesCadastrados) {
@@ -120,15 +125,15 @@ public class BancoDeDados {
 
 
     private void carregarDadosIniciais() {
+        //Produtos iniciais
         adicionarProduto(new Comida("Pizza", 25.25, "C001", 10, 24, "Nenhuma"));
         adicionarProduto(new Comida("Lembas Bread", 12.00, "C002", 5, 20, "Vegano"));
         adicionarProduto(new Comida("Hambúrguer", 18.00, "C003", 8, 25, "Nenhuma"));
-        adicionarProduto(new Bebida("Poção de Mana", 15.15, "B001", 38, "Fria", "Pequeno", "Media"));
-        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Medio", "Forte"));
-        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", "Fraco"));
+        adicionarProduto(new Bebida("Poção de Mana", 15.15, "B001", 38, "Fria", "Pequeno", 0));
+        adicionarProduto(new Bebida("Café do Programador", 8.00, "B002", 20, "Quente", "Medio", 200));
+        adicionarProduto(new Bebida("Coca-Cola", 1.25, "B003", 15, "Fria", "Grande", 50));
 
-
-        // Criando clientes iniciais
+        //Clientes iniciais
         adicionarCliente(new ClienteStandard("Arthur", "111.111.111-11", 50));
         adicionarCliente(new ClienteVIP("Eduardo", "999.999.999-99", 500));
         adicionarCliente(new ClienteStandard("Maria", "222.222.222-22", 30));

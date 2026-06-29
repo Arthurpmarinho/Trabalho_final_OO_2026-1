@@ -3,75 +3,57 @@ package br.edu.cafeteria.modelo;
 import br.edu.cafeteria.servico.Promocional;
 
 public class Bebida extends Produto implements Promocional {
-    // Atributos da classe Bebida
-    private enum Temperatura {
-        Quente,
-        Fria
-    }
 
-    private Temperatura temperatura;
+    //Atributos da classe Bebida
+    private String temperatura;
+    private String tamanho;
+    private int quantidadeEmMg;
 
-    private enum Tamanho {
-        Pequeno,
-        Medio,
-        Grande
-    }
-
-    private Tamanho tamanho;
-
-    private enum Intensidade{
-        Fraco,
-        Media,
-        Forte
-    }
-
-    private Intensidade intensidade;
-
-
-    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, String intensidade) {
+    public Bebida(String nome, double preco, String codigo, int quantidadeEstoque, String temperatura, String tamanho, int quantidadeEmMg) {
         super(nome, preco, codigo, quantidadeEstoque);
-        this.temperatura = Temperatura.valueOf(temperatura);
-        this.tamanho = Tamanho.valueOf(tamanho);
-        this.intensidade = Intensidade.valueOf(intensidade);
+        this.temperatura = temperatura;
+        this.tamanho = tamanho;
+        this.quantidadeEmMg = quantidadeEmMg;
     }
 
-    public Temperatura getTemperatura() {
+    // Getters e Setters
+    public String getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(Temperatura temperatura) {
+    public void setTemperatura(String temperatura) {
         this.temperatura = temperatura;
     }
 
-    public Tamanho getTamanho() {
+    public String getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(Tamanho tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
-    public Intensidade getIntensidade() {
-        return intensidade;
+    public int getQuantidadeEmMg() {
+        return quantidadeEmMg;
     }
 
-    public void setIntensidade(Intensidade intensidade) {
-        this.intensidade = intensidade;
+    public void setQuantidadeEmMg(int quantidadeEmMg) {
+        this.quantidadeEmMg = quantidadeEmMg;
     }
 
+    // Implementação da interface Promocional
     @Override
-    public double aplicarDesconto(int deconto) {
-        double valorComDesconto = getPreco() * (1 - deconto / 100.0);
+    public double aplicarDesconto(int desconto) {
+        double valorComDesconto = getPreco() * (1 - desconto / 100.0);
         return valorComDesconto;
     }
 
     @Override
     public String toString() {
         String message = super.toString();
-
         message += "Temperatura: " + temperatura + "\n";
         message += "Tamanho: " + tamanho + "\n";
-        message += "Intensidade: " + intensidade + "\n";
+        message += "Cafeína: " + quantidadeEmMg + " mg\n";
         return message;
     }
 

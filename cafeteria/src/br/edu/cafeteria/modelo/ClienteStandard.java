@@ -2,6 +2,7 @@ package br.edu.cafeteria.modelo;
 
 public class ClienteStandard extends Cliente {
     
+    // Atributos da classe ClienteStandard
     private static final int MULTIPLICADOR_COMPRA = 1;
 
     public ClienteStandard(String nome, String cpf, int saldoXP) {
@@ -14,8 +15,8 @@ public class ClienteStandard extends Cliente {
 
     @Override
     public int calcularPontos(double valorCompra) {
-        int pontosganhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
-        return pontosganhos;
+        int pontosGanhos = (int) (valorCompra * MULTIPLICADOR_COMPRA);
+        return pontosGanhos;
     }
 
     @Override
