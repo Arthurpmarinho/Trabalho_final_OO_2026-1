@@ -20,15 +20,18 @@ public class BancoDeDados {
 
     public void adicionarProduto(Produto produto){
         cardapio.add(produto);
+        System.out.println("Produto adicionado com sucesso");
     }
 
     public void removerProduto(String codigo){
         for (Produto produto : cardapio){
             if (produto.getCodigo().equals(codigo)){
                 cardapio.remove(produto);
+                System.out.println("Produto removido com sucesso");
                 return;
             }
         }
+        System.out.println("Produto não encontrado");
     }
 
     public Produto acharProduto(String codigo){
@@ -56,13 +59,14 @@ public class BancoDeDados {
 
     public void adicionarCliente(Cliente cliente){
         clientesCadastrados.add(cliente);
+        System.out.println("Cliente adicionado com sucesso");
     }
 
     public void removerCliente(String cpf){
         for (Cliente cliente : clientesCadastrados){
             if (cliente.getCpf().equals(cpf)){
                 clientesCadastrados.remove(cliente);
-                System.out.println("Cliente removido com sucesso.");
+                System.out.println("Cliente removido com sucesso");
                 return;
             }
         }
