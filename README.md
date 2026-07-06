@@ -212,24 +212,24 @@ lançar obrigatoriamente as seguintes exceções customizadas (`checked` ou
 Para obter a nota máxima, a implementação em Java deve deixar explícita a
 aplicação dos seguintes tópicos:
 
-[  ]  **Classes, Objetos e Associações:** Relacionamento entre Pedido, ItemPedido,
+[X]  **Classes, Objetos e Associações:** Relacionamento entre Pedido, ItemPedido,
       Produto e Cliente.   
-[  ]  **Modificadores de Escopo (Estático vs. Dinâmico):** Uso de atributos
+[X]  **Modificadores de Escopo (Estático vs. Dinâmico):** Uso de atributos
       estáticos para gerar o número sequencial automático dos pedidos e uma
       constante para a taxa de conversão de pontos XP.   
-[  ]  **Herança Simples:** Comida e Bebida herdando de Produto; ClienteStandard
+[X]  **Herança Simples:** Comida e Bebida herdando de Produto; ClienteStandard
       e ClienteVIP herdando de uma classe base Cliente (ou estrutura equivalente
       fundamentada).   
-[  ]  **Polimorfismo por Inclusão:** A classe Pedido deve armazenar uma lista
+[X]  **Polimorfismo por Inclusão:** A classe Pedido deve armazenar uma lista
       de produtos e processá-los genericamente.   
-[  ]  **Polimorfismo por Sobrescrita:** O método de calculo de pontos de
+[X]  **Polimorfismo por Sobrescrita:** O método de calculo de pontos de
       fidelidade deve ser sobrescrito nas subclasses de cliente para refletir as
       diferentes taxas de ganho de XP.   
-[  ]  **Polimorfismo por Sobrecarga:** O método de adicionar itens ao pedido deve
+[X]  **Polimorfismo por Sobrecarga:** O método de adicionar itens ao pedido deve
       possuir duas assinaturas: adicionarItem(Produto p) (adiciona 1 unidade por
       padrão) e adicionarItem(Produto p, int quantidade).   
-[  ]  **Polimorfismo por Coerção:** Demonstrar de forma consciente a conversão de tipos
-[  ]  **Interfaces:** Criação de uma interface (ex: Promocional) para aplicar
+[X]  **Polimorfismo por Coerção:** Demonstrar de forma consciente a conversão de tipos
+[X]  **Interfaces:** Criação de uma interface (ex: Promocional) para aplicar
       descontos em dias de eventos.   
 
 
